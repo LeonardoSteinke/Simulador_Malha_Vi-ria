@@ -7,9 +7,9 @@ package simulador_malha_viária;
 
 /**
  *
- * @author leona
+ * @author Leonardo Steinke e Gustavo Salvalaggio
  */
-public class Simulador_Malha_Viária {
+public class Simulador_Malha_Viaria {
 
     /**
      * @param args the command line arguments

@@ -11,8 +11,51 @@ package simulador_malha_viária.model;
  */
 public class Car extends Thread {
 
-    private int id;
+    private int carId;
     private String img;
+    private int cell;
+    private int positionX;
+    private int positionY;
+
+    public int getCarId() {
+        return carId;
+    }
+
+    public void setId(int id) {
+        this.carId = id;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public int getCell() {
+        return cell;
+    }
+
+    public void setCell(int cell) {
+        this.cell = cell;
+    }
+
+    public int getPositionX() {
+        return positionX;
+    }
+
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
+
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
+    }
 
     @Override
     public void run() {

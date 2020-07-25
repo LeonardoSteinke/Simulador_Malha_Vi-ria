@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulador_malha_viária.view;
 
-import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,13 +10,10 @@ import simulador_malha_viária.controller.observer.ObserverMap;
 
 /**
  *
- * @author Leonardo Steinke e Gustavo Salvalaggio
+ * @author Leonardo Steinke
  */
 public class Map extends javax.swing.JFrame implements ObserverMap {
 
-    /**
-     * Creates new form View
-     */
     private ControllerMap controlMap;
 
     private JPanel[][] jpMapItem;
@@ -42,6 +34,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         controlMap.attachMap(this);
         setResizable(false);
         setTitle("Simulador Malha Viária");
+        controlMap.mapLoad();
 
     }
 
@@ -56,7 +49,6 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         btnEncerrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtQtd = new javax.swing.JLabel();
-        jpMap = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMap = new javax.swing.JTable();
 
@@ -136,9 +128,6 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        jpMap.setMinimumSize(new java.awt.Dimension(500, 500));
-        jpMap.setPreferredSize(new java.awt.Dimension(500, 500));
-
         jTableMap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -153,45 +142,25 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         jTableMap.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableMap);
 
-        javax.swing.GroupLayout jpMapLayout = new javax.swing.GroupLayout(jpMap);
-        jpMap.setLayout(jpMapLayout);
-        jpMapLayout.setHorizontalGroup(
-            jpMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMapLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1546, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jpMapLayout.setVerticalGroup(
-            jpMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMapLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpMap, javax.swing.GroupLayout.PREFERRED_SIZE, 1558, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jpMap, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -207,8 +176,6 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
 
-        controlMap.mapLoad();
-
 
     }//GEN-LAST:event_btnIniciarActionPerformed
 
@@ -222,23 +189,32 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMap;
-    private javax.swing.JPanel jpMap;
     private javax.swing.JLabel txtQtd;
     // End of variables declaration//GEN-END:variables
+
+    JLabel imageLabel = new JLabel();
+    private ImageIcon image = new ImageIcon("./assets/grama.jpg");
 
     @Override
     public void setTable(int matrix[][], int rows, int collumns) {
         DefaultTableModel model = new DefaultTableModel();
         model.setRowCount(rows);
         model.setColumnCount(collumns);
-        
+
+        imageLabel.setIcon(image);
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < collumns; j++) {
-                model.setValueAt(matrix[i][j], i, j);
+                if (matrix[i][j] == 0) {
+                    model.setValueAt(imageLabel, i, j);
+
+                } else {
+                    model.setValueAt(matrix[i][j], i, j);
+                }
             }
         }
-        jTableMap.setRowHeight(50);
-        
+        jTableMap.setRowHeight(30);
+
         jTableMap.setModel(model);
     }
 

@@ -6,17 +6,10 @@
 package simulador_malha_viária.view;
 
 import java.awt.Color;
-import java.awt.print.PrinterException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import simulador_malha_viária.controller.ControllerMap;
 import simulador_malha_viária.controller.observer.ObserverMap;
 
@@ -49,7 +42,6 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         controlMap.attachMap(this);
         setResizable(false);
         setTitle("Simulador Malha Viária");
-        controlMap.mapLoad();
 
     }
 
@@ -65,6 +57,8 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         jLabel2 = new javax.swing.JLabel();
         txtQtd = new javax.swing.JLabel();
         jpMap = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableMap = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,15 +139,35 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         jpMap.setMinimumSize(new java.awt.Dimension(500, 500));
         jpMap.setPreferredSize(new java.awt.Dimension(500, 500));
 
+        jTableMap.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jTableMap.setEnabled(false);
+        jTableMap.setMaximumSize(new java.awt.Dimension(25, 25));
+        jTableMap.setMinimumSize(new java.awt.Dimension(25, 25));
+        jTableMap.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableMap);
+
         javax.swing.GroupLayout jpMapLayout = new javax.swing.GroupLayout(jpMap);
         jpMap.setLayout(jpMapLayout);
         jpMapLayout.setHorizontalGroup(
             jpMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jpMapLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1546, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jpMapLayout.setVerticalGroup(
             jpMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jpMapLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,17 +178,20 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
                 .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addComponent(jpMap, javax.swing.GroupLayout.PREFERRED_SIZE, 1558, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jpMap, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -189,7 +206,10 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        // TODO add your handling code here:
+
+        controlMap.mapLoad();
+
+
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -200,61 +220,26 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableMap;
     private javax.swing.JPanel jpMap;
     private javax.swing.JLabel txtQtd;
     // End of variables declaration//GEN-END:variables
 
-//    class RoadTableModel extends AbstractTableModel {
-//
-//        public RoadTableModel() {
-//
-//        }
-//
-//        @Override
-//        public int getRowCount() {
-//            return controlMap.getRows();
-//        }
-//
-//        @Override
-//        public int getColumnCount() {
-//
-//            return controlMap.getColumns();
-//
-//        }
-//
-//        @Override
-//        public Object getValueAt(int rowIndex, int columnIndex) {
-//            return new ImageIcon(controlMap.getMatrixPosition(rowIndex, columnIndex));
-//        }
-//    }
     @Override
     public void setTable(int matrix[][], int rows, int collumns) {
-        System.out.println("to aqui");
-        jpMap.removeAll();
-        jpMapItem = new JPanel[rows][collumns];
-
+        DefaultTableModel model = new DefaultTableModel();
+        model.setRowCount(rows);
+        model.setColumnCount(collumns);
+        
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < collumns; j++) {
-                JPanel panel = new JPanel();
-                panel.setBackground(Color.red);
-                panel.add(new JLabel(""+matrix[i][j]));
-                jpMapItem[i][j] = panel;
-                jpMap.add(panel);
+                model.setValueAt(matrix[i][j], i, j);
             }
         }
-        jpMap.repaint();
-
-//        DefaultTableModel model = (DefaultTableModel) jTableMap.getModel();
-//        model.setColumnCount(collumns);
-//        model.setRowCount(rows);
-//        model.setNumRows(rows);
-//
-//        for (int i = 0; i < rows; i++) {
-//            for (int j = 0; j < collumns; j++) {
-//                System.out.println("teste");
-//                model.setValueAt(matrix[i][j], i, j);
-//            }
-//        }
+        jTableMap.setRowHeight(50);
+        
+        jTableMap.setModel(model);
     }
 
     @Override

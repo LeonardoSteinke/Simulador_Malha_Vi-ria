@@ -27,25 +27,13 @@
               <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtSelectMap" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="btnOption1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="75" pref="75" max="-2" attributes="0"/>
-                      <Component id="btnOption3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                      <Component id="txtSelectMap" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnOption2" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
-                              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="72" pref="72" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -65,43 +53,12 @@
                   <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel3" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnOption1" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnOption3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnOption2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnOption1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Op&#xe7;&#xe3;o 1"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOption1ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnOption2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Op&#xe7;&#xe3;o 2"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOption2ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnOption3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Op&#xe7;&#xe3;o 3"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOption3ActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="txtSelectMap">
       <Properties>
         <Property name="text" type="java.lang.String" value="Selecione o mapa"/>
@@ -112,45 +69,94 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnOption1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="17" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
+                  <Component id="btnOption1" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="btnOption1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Op&#xe7;&#xe3;o 1"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOption1ActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                  <Component id="btnOption2" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
+                  <Component id="btnOption2" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="btnOption2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Op&#xe7;&#xe3;o 2"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOption2ActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel3">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="btnOption3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
+                  <Component id="btnOption3" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="btnOption3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Op&#xe7;&#xe3;o 3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOption3ActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
     </Container>
   </SubComponents>
 </Form>

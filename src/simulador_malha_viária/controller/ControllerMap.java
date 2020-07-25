@@ -49,7 +49,7 @@ public class ControllerMap {
 
     public void setMap(int id) {
         this.mapID = id;
-        String arquivo = "./malhas/malha-exemplo-" + mapID + ".txt";
+        String arquivo = "./malhas/malha" + mapID + ".txt";
         try {
             BufferedReader in = new BufferedReader(new FileReader(arquivo));
             this.rows = Integer.parseInt(in.readLine());

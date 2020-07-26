@@ -12,11 +12,22 @@ package simulador_malha_viária.model;
 public class Car extends Thread {
 
     private int carId;
+    //img não será o caminho da imagem, apenas o nome. o caminho está especificado na celula.
     private String img;
     private int cell;
     private int positionX;
     private int positionY;
+    //Celula atual
+    private Cell currentRoad;
 
+    public Cell getCurrentRoad() {
+        return currentRoad;
+    }
+
+    public void setCurrentRoad(Cell currentRoad) {
+        this.currentRoad = currentRoad;
+    }
+            
     public int getCarId() {
         return carId;
     }

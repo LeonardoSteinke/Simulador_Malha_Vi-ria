@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import simulador_malha_viária.controller.observer.ObserverMap;
 
 /**
@@ -58,9 +60,13 @@ public class ControllerMap {
                 }
             }
         } catch (Exception e) {
-            System.out.println("teste");
+            e.printStackTrace();
         }
 
+    }
+    
+    public Icon getImage(int col, int row){
+        return new ImageIcon();
     }
 
     public void mapLoad() {

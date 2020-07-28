@@ -1,10 +1,14 @@
 package simulador_malha_viária.view;
 
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import simulador_malha_viária.controller.ControllerMap;
 import simulador_malha_viária.controller.observer.ObserverMap;
 
@@ -193,11 +197,33 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
     // End of variables declaration//GEN-END:variables
 
     JLabel imageLabel = new JLabel();
-    private ImageIcon image = new ImageIcon("./assets/grama.jpg");
+    private ImageIcon image = new ImageIcon("./assets/asfalto.jpg");
 
     @Override
     public void setTable(int matrix[][], int rows, int collumns) {
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel() {
+
+            @Override
+            public int getRowCount() {
+                return controlMap.getRows();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return controlMap.getColumns();
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                try {
+                    return image;
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.toString());
+                    return null;
+                }
+            }
+        };
         model.setRowCount(rows);
         model.setColumnCount(collumns);
 
@@ -214,8 +240,22 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
             }
         }
         jTableMap.setRowHeight(30);
-
         jTableMap.setModel(model);
+        jTableMap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jTableMap.setOpaque(false);
+        jTableMap.setIntercellSpacing(new Dimension(-1, 0));
+        jTableMap.setDefaultRenderer(Object.class, new ImageRenderer());
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setPreferredSize(new Dimension(0, 0));
+
+        for (int i = 0; i < jTableMap.getColumnModel().getColumnCount(); i++) {
+            TableColumn column = jTableMap.getColumnModel().getColumn(i);
+            column.setHeaderRenderer(renderer);
+
+            column.setPreferredWidth(30);
+        }
+
     }
 
     @Override

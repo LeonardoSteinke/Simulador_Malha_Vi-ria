@@ -10,8 +10,23 @@ package simulador_malha_viária.model;
  * @author Gustavo
  */
 public abstract class Cell {
+    
+//    0 Nada (célula não usada pela malha)
+//    1 Estrada Cima
+//    2 Estrada Direita
+//    3 Estrada Baixo
+//    4 Estrada Esquerda
+//    5 Cruzamento Cima
+//    6 Cruzamento Direita
+//    7 Cruzamento Baixo
+//    8 Cruzamento Esquerda
+//    9 Cruzamento Cima e Direita
+//    10 Cruzamento Cima e Esquerda
+//    11 Cruzamento Direita e Baixo
+//    12 Cruzamento Baixo e Esquerda
 
-    protected int direction;
+
+    protected int direction; 
     protected Car car;
     protected String image;
     protected int posX;
@@ -47,69 +62,8 @@ public abstract class Cell {
         return image;
     }
 
-    public void settingImage() {
-        //verifica se é um caminho ou não
-        if (direction != 0) {
-            if (direction > 4) {
-                //criar uma pasta para adicioanar as imagens do carro
-                switch (direction) {
-                    case 5:
-                        setImageByDirection(1);
-                        break;
-                    case 6:
-                        setImageByDirection(2);
-                        break;
-                    case 7:
-                        setImageByDirection(3);
-                        break;
-                    case 8:
-                        setImageByDirection(4);
-                        break;
-                    case 9:
-                        if (car.getCurrentRoad().getDirection() <= 4) {
-                            setImageByDirection(1);
-                        } else {
-                            setImageByDirection(2);
-                        }
-                        break;
-                    case 10:
-                        if (car.getCurrentRoad().getDirection() <= 4) {
-                            setImageByDirection(4);
-                        } else {
-                            setImageByDirection(1);
-                        }
-                        break;
-                    case 11:
-                        if (car.getCurrentRoad().getDirection() <= 4) {
-                            setImageByDirection(2);
-                        } else {
-                            setImageByDirection(3);
-                        }
-                        break;
-                    case 12:
-                        if (car.getCurrentRoad().getDirection() <= 4) {
-                            setImageByDirection(3);
-                        } else {
-                            setImageByDirection(4);
-                        }
-                        break;    
-                    default:
-                        this.image = "/images/cruzamento.png";
-                        break;
-                }
-            } else {
-                setImageByDirection(this.direction);
-            }
-        }
-
-    }
-
     public void setImage(String image) {
         this.image = image;
-    }
-    
-    private void setImageByDirection(int direction){
-        this.image = "/images/" + getCar().getImg() + direction + ".png";
     }
 
     public int getPosX() {

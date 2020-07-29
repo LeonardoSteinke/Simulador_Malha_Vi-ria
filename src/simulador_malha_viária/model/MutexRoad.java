@@ -28,7 +28,6 @@ public class MutexRoad extends Cell {
          try {
             semaforo.acquire();
             super.car = car;
-            settingImage();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {

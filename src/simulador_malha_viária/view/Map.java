@@ -1,6 +1,7 @@
 package simulador_malha_viária.view;
 
 import java.awt.Dimension;
+import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -225,9 +226,9 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
                 }
             }
         };
+        
         model.setRowCount(rows);
         model.setColumnCount(collumns);
-
         jTable1.setRowHeight(30);
         jTable1.setModel(model);
         jTable1.setOpaque(false);

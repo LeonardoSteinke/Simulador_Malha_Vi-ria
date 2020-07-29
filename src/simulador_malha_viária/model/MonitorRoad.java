@@ -22,7 +22,6 @@ public class MonitorRoad extends Cell {
                 wait();
             }
             super.car = car;
-            settingImage();
             notify();
         } catch (InterruptedException e) {
             e.printStackTrace();

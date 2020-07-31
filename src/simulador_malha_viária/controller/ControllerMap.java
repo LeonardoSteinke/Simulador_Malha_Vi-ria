@@ -7,6 +7,10 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import simulador_malha_viária.controller.observer.ObserverMap;
+import simulador_malha_viária.model.Car;
+import simulador_malha_viária.model.Cell;
+import simulador_malha_viária.model.MonitorRoad;
+import simulador_malha_viária.model.MutexRoad;
 
 /**
  *
@@ -16,6 +20,7 @@ public class ControllerMap {
 
     private int mapID;
     private int matrix[][];
+    private Cell matrixCell[][];
     private int rows;
     private int collumns;
 
@@ -62,7 +67,34 @@ public class ControllerMap {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        convertMatrixToCell(false);
+    }
+    
+    private void convertMatrixToCell(boolean isMutex){
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        matrixCell = new Cell[rows][columns];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (matrix[i][j] != 0) {
+                    MutexRoad newMutex;
+                    MonitorRoad newMonitor;
+                    if (isMutex) {
+                        newMutex = new MutexRoad(matrix[i][j], rows, columns);
+                        matrixCell[i][j] = newMutex;
+                    } else {
+                        newMonitor = new MonitorRoad(matrix[i][j], rows, columns);
+                        matrixCell[i][j] = newMonitor;
+                    }
+                } else {
+                    matrixCell[i][j] = null;
+                }
+            }
+        }
+    }
+    
+    private void createCar(){
+        Car newCar = new Car();
     }
     
     public Icon getImage(int col, int row){

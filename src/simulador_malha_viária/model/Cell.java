@@ -10,8 +10,7 @@ package simulador_malha_viária.model;
  * @author Gustavo
  */
 public abstract class Cell {
-    
-//    0 Nada (célula não usada pela malha)
+
 //    1 Estrada Cima
 //    2 Estrada Direita
 //    3 Estrada Baixo
@@ -25,7 +24,7 @@ public abstract class Cell {
 //    11 Cruzamento Direita e Baixo
 //    12 Cruzamento Baixo e Esquerda
 
-
+    protected boolean isCruzamento;
     protected int direction; 
     protected Car car;
     protected String image;
@@ -33,8 +32,10 @@ public abstract class Cell {
     protected int posY;
 
     public Cell(int direction, int posX, int posY) {
+        this.direction = direction;
         this.posX = posX;
         this.posY = posY;
+        verifyCruzamento();
     }
 
     //Esté vai ser o método onde haverá o controle de limite de carros(threads) por caminho (no máximo 1 por vez)
@@ -55,7 +56,8 @@ public abstract class Cell {
     }
 
     public void setCar(Car car) {
-        this.car = car;
+        this.car = car; //necessário para informar que está com um carro no momento
+        
     }
 
     public String getImage() {
@@ -80,6 +82,12 @@ public abstract class Cell {
 
     public void setPosY(int posY) {
         this.posY = posY;
+    }
+
+    private void verifyCruzamento() {
+        if (this.direction > 4) {
+            this.isCruzamento = true;
+        }
     }
 
 }

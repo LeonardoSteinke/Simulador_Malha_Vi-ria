@@ -218,7 +218,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
                 try {
-                    return teste(rowIndex, columnIndex, matrix);
+                    return paint(rowIndex, columnIndex, matrix);
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.toString());
@@ -246,7 +246,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         jTable1.setIntercellSpacing(new Dimension(0, 0));
     }
 
-    public ImageIcon teste(int rows, int collumns, int matrix[][]) {
+    public ImageIcon paint(int rows, int collumns, int matrix[][]) {
         if (matrix[rows][collumns] == 0) {
             return imagem;
         } else {

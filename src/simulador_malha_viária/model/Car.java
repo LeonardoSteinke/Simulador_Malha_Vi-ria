@@ -12,7 +12,7 @@ package simulador_malha_viária.model;
 public class Car extends Thread {
 
     private int carId;
-    //img não será o caminho da imagem, apenas o nome. o caminho está especificado na celula.
+    private int direcetion; //criar classe para controlar as direcoes.
     private String img;
     private int cell;
     private int positionX;

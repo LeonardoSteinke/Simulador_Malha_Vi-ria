@@ -17,14 +17,7 @@ public class MonitorRoad extends Cell {
 
     @Override
     public synchronized void receiveCar(Car car) {
-        try {
-            if (getCar() != null) {
-                Thread.sleep(3000);
-            }
             setCar(car);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

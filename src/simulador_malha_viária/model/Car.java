@@ -71,6 +71,14 @@ public class Car extends Thread {
 
     @Override
     public void run() {
+        Random rand = new Random();
+        while(this.currentRoad.nextCell.size() != 0){
+
+            if (this.currentRoad.isIsCruzamento()) {
+                this.currentRoad.getNextCell().get(rand.nextInt(1)).receiveCar(this);
+                //notify
+            }
+        }
         
     }
 

@@ -23,7 +23,7 @@ public abstract class Cell {
 //    8 Cruzamento Esquerda
 //    9 Cruzamento Cima e Direita
 //    10 Cruzamento Cima e Esquerda
-//    11 Cruzamento Direita e Baixo
+//    11 Cruzamento Baixo e Direita
 //    12 Cruzamento Baixo e Esquerda
 
     protected boolean isCruzamento;
@@ -39,6 +39,7 @@ public abstract class Cell {
         this.direction = direction;
         this.posX = posX;
         this.posY = posY;
+        nextCell  = new ArrayList();
         verifyCruzamento();
     }
 

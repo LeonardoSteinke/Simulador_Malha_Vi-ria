@@ -27,6 +27,8 @@ public class ControllerMap {
     private Cell matrixCell[][];
     private int rows;
     private int collumns;
+    private int qtdCars;
+    private ControllerSpawner driver;
 
     private static ControllerMap instance = null;
 
@@ -108,24 +110,54 @@ public class ControllerMap {
                     try {
                         switch (road.getDirection()) {
                             case 1:
-                                road.addNextCell(matrixCell[i][j - 1]); //cima
+                                road.addNextCell(matrixCell[i - 1][j]); //cima
+
                                 break;
                             case 2:
-                                road.addNextCell(matrixCell[i + 1][j]); //direita
+                                road.addNextCell(matrixCell[i][j + 1]); //direita
                                 break;
                             case 3:
-                                road.addNextCell(matrixCell[i][j + 1]); // baixo
+                                road.addNextCell(matrixCell[i + 1][j]); // baixo
                                 break;
                             case 4:
-                                road.addNextCell(matrixCell[i - 1][j]); // esquerda
+                                road.addNextCell(matrixCell[i][j - 1]); // esquerda
+                                break;
+                            case 5:
+                                road.addNextCell(matrixCell[i - 1][j]); //cima
+                                break;
+                            case 6:
+                                road.addNextCell(matrixCell[i][j + 1]);//direita
+                                break;
+                            case 7:
+                                road.addNextCell(matrixCell[i + 1][j]);//baixo
+                                break;
+                            case 8:
+                                road.addNextCell(matrixCell[i][j - 1]);//esquerda
+                                break;
+                            case 9:
+                                road.addNextCell(matrixCell[i - 1][j]);
+                                road.addNextCell(matrixCell[i][j + 1]);
+                                break;
+                            case 10:
+                                road.addNextCell(matrixCell[i  - 1][j]);
+                                road.addNextCell(matrixCell[i][j - 1]);
+                                break;
+                            case 11:
+                                road.addNextCell(matrixCell[i + 1][j]);
+                                road.addNextCell(matrixCell[i][j + 1]);
+                                break;
+                            case 12:
+                                road.addNextCell(matrixCell[i + 1][j]);
+                                road.addNextCell(matrixCell[i][j - 1]);
                                 break;
                         }
                     } catch (Exception e) {
-                        road.addNextCell(null);
+                        //array fica vazio
                     }
                 }
             }
         }
+        String stop = "";
     }
 
     private Car createCar(Cell road) {
@@ -143,6 +175,7 @@ public class ControllerMap {
     }
 
     public void setCars(int value) {
+        this.qtdCars = value;
         if (value < 0) {
             notifyQtdCarsError();
             return;
@@ -228,7 +261,7 @@ public class ControllerMap {
 
     }
 
-    private void spawnCar() {
+    public void spawnCar() {
         List<Cell> roads = new ArrayList();
         for (Cell[] roadLine : matrixCell) {
             for (Cell road : roadLine) {
@@ -279,14 +312,15 @@ public class ControllerMap {
         return new ImageIcon(matrixCell[row][collumn].getCar().getImg());
     }
 
-    //Se adicionar um parametro tempo, será o valor do Thread.sleep
-    public void start(int qtdCars) {
-        for (int i = 0; i < qtdCars; i++) {
-
-            spawnCar();
-
-        }
-
+    public int getQtdCars() {
+        return qtdCars;
     }
 
+    //Se adicionar um parametro tempo, será o valor do Thread.sleep
+    public void start() {
+        driver = new ControllerSpawner();
+        driver.start();
+    }
+
+    
 }

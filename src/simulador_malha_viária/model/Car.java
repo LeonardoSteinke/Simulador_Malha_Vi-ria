@@ -25,7 +25,7 @@ public class Car extends Thread {
         this.carId = carId;
         this.currentRoad = currentRoad;
         this.oldRoad = null;
-        setType(9);
+        setType(5);
     }
 
     public int getTypeCar() {
@@ -71,7 +71,7 @@ public class Car extends Thread {
 
     @Override
     public void run() {
-        super.run(); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }

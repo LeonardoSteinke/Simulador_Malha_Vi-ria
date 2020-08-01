@@ -228,7 +228,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         
         model.setRowCount(rows);
         model.setColumnCount(collumns);
-        jTable1.setRowHeight(30);
+        jTable1.setRowHeight(40);
         jTable1.setModel(model);
         jTable1.setOpaque(false);
         jTable1.setDefaultRenderer(Object.class, new ImageRenderer());
@@ -238,8 +238,8 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
 
         for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
             TableColumn column = jTable1.getColumnModel().getColumn(i);
-            column.setHeaderRenderer(renderer);
-            column.setPreferredWidth(30);
+            //column.setHeaderRenderer(renderer);
+            column.setPreferredWidth(40);
         }
 
         jTable1.setIntercellSpacing(new Dimension(0, 0));

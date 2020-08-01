@@ -5,6 +5,8 @@
  */
 package simulador_malha_viária.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Gustavo
@@ -26,7 +28,7 @@ public abstract class Cell {
 
     protected boolean isCruzamento;
     protected boolean isSpawner;
-   
+    protected ArrayList<Cell> nextCell;
     protected int direction; 
     protected Car car;
     protected String image;
@@ -94,6 +96,18 @@ public abstract class Cell {
 
      public boolean isIsCruzamento() {
         return isCruzamento;
+    }
+
+    public ArrayList<Cell> getNextCell() {
+        return nextCell;
+    }
+
+    public void setNextCell(ArrayList<Cell> nextCell) {
+        this.nextCell = nextCell;
+    }
+    
+    public void addNextCell(Cell newCell){
+        this.nextCell.add(newCell);
     }
 
     public void setIsCruzamento(boolean isCruzamento) {

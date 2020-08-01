@@ -96,7 +96,23 @@ public class ControllerMap {
                 }
             }
         }
-
+        
+        setNextCell();
+    }
+    
+    private void setNextCell(){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < collumns; j++) {
+                Cell road = matrixCell[i][j];
+                if ( road != null) {
+                    switch(road.getDirection()){
+                        case 1:
+                            road.addNextCell(matrixCell[i][j - 1]);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     private Car createCar(Cell road) {

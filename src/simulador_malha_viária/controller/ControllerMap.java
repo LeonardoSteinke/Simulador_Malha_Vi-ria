@@ -97,7 +97,7 @@ public class ControllerMap {
             }
         }
         
-        setNextCell();
+       // setNextCell();
     }
     
     private void setNextCell(){

@@ -96,19 +96,32 @@ public class ControllerMap {
                 }
             }
         }
-        
+
         setNextCell();
     }
-    
-    private void setNextCell(){
+
+    private void setNextCell() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < collumns; j++) {
                 Cell road = matrixCell[i][j];
-                if ( road != null) {
-                    switch(road.getDirection()){
-                        case 1:
-                            road.addNextCell(matrixCell[i][j - 1]);
-                        break;
+                if (road != null) {
+                    try {
+                        switch (road.getDirection()) {
+                            case 1:
+                                road.addNextCell(matrixCell[i][j - 1]); //cima
+                                break;
+                            case 2:
+                                road.addNextCell(matrixCell[i + 1][j]); //direita
+                                break;
+                            case 3:
+                                road.addNextCell(matrixCell[i][j + 1]); // baixo
+                                break;
+                            case 4:
+                                road.addNextCell(matrixCell[i - 1][j]); // esquerda
+                                break;
+                        }
+                    } catch (Exception e) {
+                        road.addNextCell(null);
                     }
                 }
             }
@@ -271,8 +284,6 @@ public class ControllerMap {
         for (int i = 0; i < qtdCars; i++) {
 
             spawnCar();
-
-           
 
         }
 

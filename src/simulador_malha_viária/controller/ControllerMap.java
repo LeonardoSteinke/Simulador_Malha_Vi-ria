@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import simulador_malha_viária.controller.observer.ObserverMap;
@@ -19,6 +22,7 @@ import simulador_malha_viária.model.MutexRoad;
 public class ControllerMap {
 
     private int mapID;
+    private int carID;
     private int matrix[][];
     private Cell matrixCell[][];
     private int rows;
@@ -69,35 +73,39 @@ public class ControllerMap {
         }
         convertMatrixToCell(false);
     }
-    
-    private void convertMatrixToCell(boolean isMutex){
-        int rows = matrix.length;
-        int columns = matrix[0].length;
-        matrixCell = new Cell[rows][columns];
+
+    private void convertMatrixToCell(boolean isMutex) {
+        matrixCell = new Cell[this.rows][this.collumns];
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
+            for (int j = 0; j < collumns; j++) {
                 if (matrix[i][j] != 0) {
                     MutexRoad newMutex;
                     MonitorRoad newMonitor;
                     if (isMutex) {
-                        newMutex = new MutexRoad(matrix[i][j], rows, columns);
+                        newMutex = new MutexRoad(matrix[i][j], i, j);
                         matrixCell[i][j] = newMutex;
+                        roadSpawner(newMutex);
                     } else {
-                        newMonitor = new MonitorRoad(matrix[i][j], rows, columns);
+                        newMonitor = new MonitorRoad(matrix[i][j], i, j);
                         matrixCell[i][j] = newMonitor;
+                        roadSpawner(newMonitor);
                     }
+
                 } else {
                     matrixCell[i][j] = null;
                 }
             }
         }
+
     }
-    
-    private void createCar(){
-        Car newCar = new Car();
+
+    private Car createCar(Cell road) {
+        Car newCar = new Car(carID++, road);
+        setCarImage(newCar);
+        return newCar;
     }
-    
-    public Icon getImage(int col, int row){
+
+    public Icon getImage(int col, int row) {
         return new ImageIcon();
     }
 
@@ -139,6 +147,117 @@ public class ControllerMap {
     private void notifySetTable(int[][] matrix) {
         for (ObserverMap obs : mapObserver) {
             obs.setTable(matrix, rows, collumns);
+        }
+
+    }
+
+    private void notifyRepaint() {
+        for (ObserverMap obs : mapObserver) {
+            obs.rePaint();
+        }
+    }
+
+    private void setCarImage(Car car) {
+
+        int currentDir = car.getCurrentRoad().getDirection();
+        int oldDir = 0;
+        if (car.getOldRoad() != null) {
+            car.getOldRoad().getDirection();
+        }
+        if (oldDir > 4) {
+            switch (currentDir) {
+
+                case 5:
+                    car.setImg(1); //cima
+                    break;
+                case 6:
+                    car.setImg(2);//direita
+                    break;
+                case 7:
+                    car.setImg(3);//baixo
+                    break;
+                case 8:
+                    car.setImg(4);//esquerda
+                    break;
+                case 9:
+                    car.setImg(2);
+                    break;
+                case 10:
+                    car.setImg(1);
+                    break;
+                case 11:
+                    car.setImg(3);
+                    break;
+                case 12:
+                    car.setImg(4);
+                    break;
+
+            }
+        } else {
+            car.setImg(currentDir);
+        }
+
+    }
+
+    private void spawnCar() {
+        List<Cell> roads = new ArrayList();
+        for (Cell[] roadLine : matrixCell) {
+            for (Cell road : roadLine) {
+                if (road != null && road.isIsSpawner()) {
+                    roads.add(road);
+                }
+            }
+        }
+        Random rand = new Random();
+        printCar(roads.get(rand.nextInt(roads.size())));
+
+    }
+
+    private void printCar(Cell road) {
+        road.receiveCar(createCar(road));// toda vez que esse método for chamado
+        notifyRepaint();
+    }
+
+    private void roadSpawner(Cell road) {
+        if (road != null) {
+            if (road.getPosY() == 0) {
+                if (road.getDirection() == 2) {
+                    road.setIsSpawner(true);
+                }
+            } else if (road.getPosY() == (matrix[0].length - 1)) {
+                if (road.getDirection() == 4) {
+                    road.setIsSpawner(true);
+                }
+            }
+
+            if (road.getPosX() == 0) {
+                if (road.getDirection() == 3) {
+                    road.setIsSpawner(true);
+                }
+            } else if (road.getPosX() == (matrix.length - 1)) {
+                if (road.getDirection() == 1) {
+                    road.setIsSpawner(true);
+                }
+            }
+
+        }
+    }
+
+    public ImageIcon getRoad(int row, int collumn) {
+        if (matrixCell[row][collumn].getCar() == null) {
+            return new ImageIcon("./assets/asfalto.jpg");
+        }
+        return new ImageIcon(matrixCell[row][collumn].getCar().getImg());
+    }
+
+    //Se adicionar um parametro tempo, será o valor do Thread.sleep
+    public void start(int qtdCars) {
+        for (int i = 0; i < qtdCars; i++) {
+
+            spawnCar();
+
+           
+
         }
 
     }

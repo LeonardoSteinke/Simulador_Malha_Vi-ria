@@ -18,11 +18,10 @@ public class MonitorRoad extends Cell {
     @Override
     public synchronized void receiveCar(Car car) {
         try {
-            while (getCar() != null) {
-                wait();
+            if (getCar() != null) {
+                Thread.sleep(3000);
             }
             setCar(car);
-            notify();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

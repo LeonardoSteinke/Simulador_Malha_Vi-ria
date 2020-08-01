@@ -180,7 +180,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-
+        controlMap.start(Integer.parseInt(edtQuantidadeVeiculos.getValue().toString()));
 
     }//GEN-LAST:event_btnIniciarActionPerformed
 
@@ -198,8 +198,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
     // End of variables declaration//GEN-END:variables
 
     JLabel imageLabel = new JLabel();
-    private ImageIcon image = new ImageIcon("./assets/asfalto.jpg");
-    private ImageIcon imagem = new ImageIcon("./assets/gramaold.jpg");
+    private ImageIcon grama = new ImageIcon("./assets/gramaold.jpg");
 
     @Override
     public void setTable(int matrix[][], int rows, int collumns) {
@@ -248,9 +247,9 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
 
     public ImageIcon paint(int rows, int collumns, int matrix[][]) {
         if (matrix[rows][collumns] == 0) {
-            return imagem;
+            return grama;
         } else {
-            return image;
+            return controlMap.getRoad(rows, collumns);
         }
         
     }
@@ -265,5 +264,12 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         JOptionPane.showMessageDialog(null, "Você não pode informar uma quantidade\nnegativa de veículos", "Error", 2);
 
     }
+
+    @Override
+    public void rePaint() {
+        jTable1.repaint();
+    }
+    
+    
 
 }

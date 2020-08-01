@@ -5,6 +5,8 @@
  */
 package simulador_malha_viária.model;
 
+import java.util.Random;
+
 /**
  *
  * @author Leonardo Steinke
@@ -12,13 +14,28 @@ package simulador_malha_viária.model;
 public class Car extends Thread {
 
     private int carId;
-    private int direcetion; //criar classe para controlar as direcoes.
+    private int typeCar;
     private String img;
-    private int cell;
-    private int positionX;
-    private int positionY;
     //Celula atual
     private Cell currentRoad;
+    private Cell oldRoad;
+
+
+    public Car(int carId, Cell currentRoad) {
+        this.carId = carId;
+        this.currentRoad = currentRoad;
+        this.oldRoad = null;
+        setType(9);
+    }
+
+    public int getTypeCar() {
+        return typeCar;
+    }
+
+    public final void setType(int numTypes){
+        Random num = new Random();
+        this.typeCar = num.nextInt(numTypes) + 1;
+    }
 
     public Cell getCurrentRoad() {
         return currentRoad;
@@ -39,33 +56,17 @@ public class Car extends Thread {
     public String getImg() {
         return img;
     }
-
-    public void setImg(String img) {
-        this.img = img;
+    
+    public Cell getOldRoad() {
+        return oldRoad;
     }
 
-    public int getCell() {
-        return cell;
+    public void setOldRoad(Cell oldRoad) {
+        this.oldRoad = oldRoad;
     }
 
-    public void setCell(int cell) {
-        this.cell = cell;
-    }
-
-    public int getPositionX() {
-        return positionX;
-    }
-
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    public int getPositionY() {
-        return positionY;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
+    public void setImg(int direction) {
+        this.img = "./assets/Car" + getTypeCar() + "Dir" + direction + ".jpg";
     }
 
     @Override

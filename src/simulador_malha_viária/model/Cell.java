@@ -25,6 +25,8 @@ public abstract class Cell {
 //    12 Cruzamento Baixo e Esquerda
 
     protected boolean isCruzamento;
+    protected boolean isSpawner;
+   
     protected int direction; 
     protected Car car;
     protected String image;
@@ -90,4 +92,19 @@ public abstract class Cell {
         }
     }
 
+     public boolean isIsCruzamento() {
+        return isCruzamento;
+    }
+
+    public void setIsCruzamento(boolean isCruzamento) {
+        this.isCruzamento = isCruzamento;
+    }
+
+    public boolean isIsSpawner() {
+        return isSpawner;
+    }
+
+    public void setIsSpawner(boolean isSpawner) {
+        this.isSpawner = isSpawner;
+    }
 }

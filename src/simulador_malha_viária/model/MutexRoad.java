@@ -27,7 +27,7 @@ public class MutexRoad extends Cell {
     public void receiveCar(Car car) {
          try {
             semaforo.acquire();
-            super.car = car;
+            setCar(car);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
@@ -39,12 +39,7 @@ public class MutexRoad extends Cell {
     public void removeCar() {
          try {
             semaforo.acquire();
-            super.car = null;
-            if (direction > 4) {
-                setImage("images/blank.png");
-            } else {
-                setImage("images/road" + super.direction + ".png");
-            }
+            setCar(null);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {

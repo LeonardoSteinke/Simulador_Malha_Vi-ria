@@ -16,12 +16,18 @@ public class MonitorRoad extends Cell {
     }
 
     @Override
-    public synchronized void receiveCar(Car car) {
-        setCar(car);
+     public synchronized void receiveCar(Car car) {
+        try {
+            while (getCar() != null) {
+                wait(1000);
+            }
+            setCar(car);
+        } catch (Exception e) {
+        }
     }
 
     @Override
-    public void removeCar() {
+    public synchronized void removeCar() {
         super.car = null;
     }
 }

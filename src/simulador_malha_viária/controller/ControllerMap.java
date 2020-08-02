@@ -55,7 +55,7 @@ public class ControllerMap {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setMap(int id) {
+    public void setMap(int id, boolean isMutex) {
         this.mapID = id;
         String arquivo = "./malhas/malha" + mapID + ".txt";
         try {
@@ -73,7 +73,7 @@ public class ControllerMap {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        convertMatrixToCell(false);
+        convertMatrixToCell(isMutex);
     }
 
     private void convertMatrixToCell(boolean isMutex) {
@@ -251,9 +251,11 @@ public class ControllerMap {
                             car.setImg(2);
                         }
                     } else {
-                         
+                         if (car.getNextDirection() == 0) {
+                            car.setImg(1);
+                        } else {
                             car.setImg(2);
-                        
+                        }
                     }
                         
                     break;
@@ -265,9 +267,11 @@ public class ControllerMap {
                             car.setImg(1);
                         }
                     } else {
-                       
+                        if (car.getNextDirection() == 0) {
                             car.setImg(1);
-                        
+                        } else {
+                            car.setImg(4);
+                        }
                     }    
                     break;
                 case 11:

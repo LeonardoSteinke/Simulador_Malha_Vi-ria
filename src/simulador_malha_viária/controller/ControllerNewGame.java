@@ -31,7 +31,7 @@ public class ControllerNewGame {
 
     public void selectMap(int id) {
         ControllerMap control = ControllerMap.getIntance();
-        control.setMap(id);
+        control.setMap(id, true);
         notifyNewGameStart();
     }
 

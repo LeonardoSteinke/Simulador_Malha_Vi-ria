@@ -30,7 +30,8 @@ public class ControllerCar extends Thread {
         Random rand = new Random();
         while (!this.car.getCurrentRoad().getNextCell().isEmpty()) {
             try {
-                sleep(400);
+
+                sleep(500);
                 int numRand = rand.nextInt(2);
                 if (this.car.getCurrentRoad().isIsCruzamento()) {
                     this.car.getCurrentRoad().getNextCell().get(numRand).receiveCar(car);
@@ -46,7 +47,6 @@ public class ControllerCar extends Thread {
                     this.car.getCurrentRoad().removeCar();
                     this.car.setOldRoad(this.car.getCurrentRoad());
                     this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(0));
-                    this.car.setNextDirection(0);
                 }
                 controller.setCarImage(car);
                 controller.notifyRepaint();

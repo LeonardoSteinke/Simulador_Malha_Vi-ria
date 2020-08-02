@@ -276,7 +276,7 @@ public class ControllerMap {
                     break;
                 case 11:
                     if (oldDir <= 4) {
-                        if (car.getNextDirection() == 0) {
+                    if (car.getNextDirection() == 0) {
                             car.setImg(2);
                         } else {
                             car.setImg(3);
@@ -292,19 +292,19 @@ public class ControllerMap {
                         if (car.getNextDirection() == 0) {
                             car.setImg(3);
                         } else {
-                            car.setImg(4);
+                        car.setImg(4);
                         }
                     } else {
                         
                             car.setImg(4);
                         
-                    }    
+                    }
                     break;
 
             }
 
         } else {
-            car.setImg(currentDir);
+             car.setImg(currentDir);
         }
 
     }

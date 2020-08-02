@@ -16,16 +16,23 @@ public class Car {
     private int carId;
     private int typeCar;
     private String img;
-    //Celula atual
+    private int nextDirection;
     private Cell currentRoad;
     private Cell oldRoad;
-
 
     public Car(int carId, Cell currentRoad) {
         this.carId = carId;
         this.currentRoad = currentRoad;
-        this.oldRoad = null;
+        this.nextDirection = 0;
         setType(5);
+    }
+
+    public int getNextDirection() {
+        return nextDirection;
+    }
+
+    public void setNextDirection(int nextDirection) {
+        this.nextDirection = nextDirection;
     }
 
     public int getTypeCar() {
@@ -35,6 +42,14 @@ public class Car {
     public final void setType(int numTypes){
         Random num = new Random();
         this.typeCar = num.nextInt(numTypes) + 1;
+    }
+
+    public Cell getOldRoad() {
+        return oldRoad;
+    }
+
+    public void setOldRoad(Cell oldRoad) {
+        this.oldRoad = oldRoad;
     }
 
     public Cell getCurrentRoad() {
@@ -57,14 +72,6 @@ public class Car {
         return img;
     }
     
-    public Cell getOldRoad() {
-        return oldRoad;
-    }
-
-    public void setOldRoad(Cell oldRoad) {
-        this.oldRoad = oldRoad;
-    }
-
     public void setImg(int direction) {
         this.img = "./assets/Car" + getTypeCar() + "Dir" + direction + ".jpg";
     }

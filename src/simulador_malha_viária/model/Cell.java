@@ -90,7 +90,7 @@ public abstract class Cell {
     }
 
     private void verifyCruzamento() {
-        if (this.direction > 4) {
+        if (this.direction > 8) {
             this.isCruzamento = true;
         }
     }

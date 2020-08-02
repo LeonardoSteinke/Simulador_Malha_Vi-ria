@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulador_malha_viária.controller;
 
 import java.util.ArrayList;
@@ -29,9 +24,9 @@ public class ControllerNewGame {
 
     }
 
-    public void selectMap(int id) {
+    public void selectMap(int id, boolean method) {
         ControllerMap control = ControllerMap.getIntance();
-        control.setMap(id, false);
+        control.setMap(id, method);
         notifyNewGameStart();
     }
 

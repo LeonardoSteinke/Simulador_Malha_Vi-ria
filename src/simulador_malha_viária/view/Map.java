@@ -1,12 +1,10 @@
 package simulador_malha_viária.view;
 
 import java.awt.Dimension;
-import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -20,8 +18,6 @@ import simulador_malha_viária.controller.observer.ObserverMap;
 public class Map extends javax.swing.JFrame implements ObserverMap {
 
     private ControllerMap controlMap;
-
-    private JPanel[][] jpMapItem;
 
     private static Map instance = null;
 
@@ -223,7 +219,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
                 }
             }
         };
-        
+
         model.setRowCount(rows);
         model.setColumnCount(collumns);
         jTable1.setRowHeight(40);
@@ -249,7 +245,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         } else {
             return controlMap.getRoad(rows, collumns);
         }
-        
+
     }
 
     @Override
@@ -267,7 +263,5 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
     public void rePaint() {
         jTable1.repaint();
     }
-    
-    
 
 }

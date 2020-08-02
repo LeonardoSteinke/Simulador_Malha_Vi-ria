@@ -28,7 +28,7 @@ public class ControllerMap {
     private int rows;
     private int collumns;
     private int qtdCars;
-    private ControllerSpawner driver;
+    private ControllerSpawner spawn;
 
     private static ControllerMap instance = null;
 
@@ -157,12 +157,14 @@ public class ControllerMap {
                 }
             }
         }
-        String stop = "";
+        
     }
 
     private Car createCar(Cell road) {
         Car newCar = new Car(carID++, road);
         setCarImage(newCar);
+        ControllerCar driver = new ControllerCar(newCar);
+        driver.start();
         return newCar;
     }
 
@@ -213,7 +215,7 @@ public class ControllerMap {
 
     }
 
-    private void notifyRepaint() {
+    public void notifyRepaint() {
         for (ObserverMap obs : mapObserver) {
             obs.rePaint();
         }
@@ -224,7 +226,7 @@ public class ControllerMap {
         int currentDir = car.getCurrentRoad().getDirection();
         int oldDir = 0;
         if (car.getOldRoad() != null) {
-            car.getOldRoad().getDirection();
+            oldDir = car.getOldRoad().getDirection();
         }
         if (oldDir > 4) {
             switch (currentDir) {
@@ -276,8 +278,7 @@ public class ControllerMap {
     }
 
     private void printCar(Cell road) {
-        road.receiveCar(createCar(road));// toda vez que esse método for chamado
-        notifyRepaint();
+        road.receiveCar(createCar(road));
     }
 
     private void roadSpawner(Cell road) {
@@ -318,8 +319,8 @@ public class ControllerMap {
 
     //Se adicionar um parametro tempo, será o valor do Thread.sleep
     public void start() {
-        driver = new ControllerSpawner();
-        driver.start();
+        spawn = new ControllerSpawner();
+        spawn.start();
     }
 
     

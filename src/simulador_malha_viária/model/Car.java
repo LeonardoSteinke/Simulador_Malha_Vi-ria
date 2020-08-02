@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Leonardo Steinke
  */
-public class Car extends Thread {
+public class Car {
 
     private int carId;
     private int typeCar;
@@ -67,19 +67,6 @@ public class Car extends Thread {
 
     public void setImg(int direction) {
         this.img = "./assets/Car" + getTypeCar() + "Dir" + direction + ".jpg";
-    }
-
-    @Override
-    public void run() {
-        Random rand = new Random();
-        while(this.currentRoad.nextCell.size() != 0){
-
-            if (this.currentRoad.isIsCruzamento()) {
-                this.currentRoad.getNextCell().get(rand.nextInt(1)).receiveCar(this);
-                //notify
-            }
-        }
-        
     }
 
 }

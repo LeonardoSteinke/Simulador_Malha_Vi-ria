@@ -17,25 +17,11 @@ public class MonitorRoad extends Cell {
 
     @Override
     public synchronized void receiveCar(Car car) {
-            setCar(car);
+        setCar(car);
     }
 
     @Override
     public void removeCar() {
-        try {
-            while (super.car == null) {
-                wait();
-            }
-            super.car = null;
-            if (direction > 4) {
-                setImage("images/blank.png");
-            } else {
-                setImage("images/road" + super.direction + ".png");
-            }
-            notify();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        super.car = null;
     }
-
 }

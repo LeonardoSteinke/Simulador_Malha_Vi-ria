@@ -221,7 +221,7 @@ public class ControllerMap {
         }
     }
 
-    public void setCarImage(Car car) {
+    public synchronized void setCarImage(Car car) {
 
         int currentDir = car.getCurrentRoad().getDirection();
         int oldDir = 0;
@@ -244,20 +244,11 @@ public class ControllerMap {
                     car.setImg(4);//esquerda
                     break;
                 case 9:
-                    if (oldDir <= 4) {
-                        if (car.getNextDirection() == 0) {
-                            car.setImg(1);
-                        } else {
-                            car.setImg(2);
-                        }
+                    if (car.getNextDirection() == 0) {
+                        car.setImg(1);
                     } else {
-                         if (car.getNextDirection() == 0) {
-                            car.setImg(1);
-                        } else {
-                            car.setImg(2);
-                        }
+                        car.setImg(2);
                     }
-                        
                     break;
                 case 10:
                     if (oldDir <= 4) {
@@ -272,39 +263,37 @@ public class ControllerMap {
                         } else {
                             car.setImg(4);
                         }
-                    }    
+                    }
                     break;
                 case 11:
                     if (oldDir <= 4) {
-                    if (car.getNextDirection() == 0) {
+                        if (car.getNextDirection() == 0) {
                             car.setImg(2);
                         } else {
                             car.setImg(3);
                         }
                     } else {
-                         
-                            car.setImg(3);
-                        
-                    }    
+
+                        car.setImg(3);
+
+                    }
                     break;
                 case 12:
                     if (oldDir <= 4) {
                         if (car.getNextDirection() == 0) {
                             car.setImg(3);
                         } else {
-                        car.setImg(4);
+                            car.setImg(4);
                         }
                     } else {
-                        
-                            car.setImg(4);
-                        
+                        car.setImg(4);
                     }
                     break;
 
             }
 
         } else {
-             car.setImg(currentDir);
+            car.setImg(currentDir);
         }
 
     }

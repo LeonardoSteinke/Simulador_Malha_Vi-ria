@@ -236,7 +236,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
 
         for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
             TableColumn column = jTable1.getColumnModel().getColumn(i);
-            //column.setHeaderRenderer(renderer);
+            column.setHeaderRenderer(renderer);
             column.setPreferredWidth(40);
         }
 

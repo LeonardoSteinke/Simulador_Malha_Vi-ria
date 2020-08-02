@@ -18,6 +18,7 @@ import simulador_malha_viária.model.Car;
 public class ControllerCar extends Thread {
 
     private Car car;
+    private int contador;
 
     ControllerMap controller = ControllerMap.getIntance();
 
@@ -31,16 +32,30 @@ public class ControllerCar extends Thread {
         while (!this.car.getCurrentRoad().getNextCell().isEmpty()) {
             try {
 
-                sleep(500);
+                sleep(300); //velocidade
                 int numRand = rand.nextInt(2);
                 if (this.car.getCurrentRoad().isIsCruzamento()) {
-                    this.car.getCurrentRoad().getNextCell().get(numRand).receiveCar(car);
+                    if (this.car.getOldRoad().isIsCruzamento()) {
+                        contador++;
+                    } else {
+                        contador = 0;
+                    }
+                    if (contador >= 2) {
+                        contador = 0;
+                        if (this.car.getCurrentRoad().getNextCell().get(0).isIsCruzamento()) {
+                            numRand = 1;
+                        } else {
+                            numRand = 0;
+                        }
+                    } 
+                     this.car.getCurrentRoad().getNextCell().get(numRand).receiveCar(car);
 
-                    this.car.getCurrentRoad().removeCar();
-                    this.car.setOldRoad(this.car.getCurrentRoad());
-                    this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(numRand));
+                        this.car.getCurrentRoad().removeCar();
+                        this.car.setOldRoad(this.car.getCurrentRoad());
+                        this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(numRand));
 
-                    this.car.setNextDirection(numRand);
+                        this.car.setNextDirection(numRand);
+                    
                 } else {
                     this.car.getCurrentRoad().getNextCell().get(0).receiveCar(car);
 

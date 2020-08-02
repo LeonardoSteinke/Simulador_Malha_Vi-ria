@@ -221,7 +221,7 @@ public class ControllerMap {
         }
     }
 
-    private void setCarImage(Car car) {
+    public void setCarImage(Car car) {
 
         int currentDir = car.getCurrentRoad().getDirection();
         int oldDir = 0;

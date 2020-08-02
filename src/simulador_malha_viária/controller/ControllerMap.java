@@ -139,7 +139,7 @@ public class ControllerMap {
                                 road.addNextCell(matrixCell[i][j + 1]);
                                 break;
                             case 10:
-                                road.addNextCell(matrixCell[i  - 1][j]);
+                                road.addNextCell(matrixCell[i - 1][j]);
                                 road.addNextCell(matrixCell[i][j - 1]);
                                 break;
                             case 11:
@@ -157,7 +157,7 @@ public class ControllerMap {
                 }
             }
         }
-        
+
     }
 
     private Car createCar(Cell road) {
@@ -224,13 +224,9 @@ public class ControllerMap {
     public void setCarImage(Car car) {
 
         int currentDir = car.getCurrentRoad().getDirection();
-        int oldDir = 0;
-        if (car.getOldRoad() != null) {
-            oldDir = car.getOldRoad().getDirection();
-        }
-        if (oldDir > 4) {
-            switch (currentDir) {
 
+        if (currentDir > 4) {
+            switch (currentDir) {
                 case 5:
                     car.setImg(1); //cima
                     break;
@@ -244,21 +240,37 @@ public class ControllerMap {
                     car.setImg(4);//esquerda
                     break;
                 case 9:
-                    car.setImg(2);
+                    if (car.getNextDirection() == 0) {
+                        car.setImg(2);
+                    } else {
+                        car.setImg(1);
+                    }
                     break;
                 case 10:
-                    car.setImg(1);
+                    if (car.getNextDirection() == 0) {
+                        car.setImg(4);
+                    } else {
+                        car.setImg(1);
+                    }
                     break;
                 case 11:
-                    car.setImg(3);
+                     if (car.getNextDirection() == 0) {
+                        car.setImg(2);
+                    } else {
+                        car.setImg(3);
+                    }
                     break;
                 case 12:
-                    car.setImg(4);
+                     if (car.getNextDirection() == 0) {
+                        car.setImg(4);
+                    } else {
+                        car.setImg(3);
+                    }
                     break;
 
             }
         } else {
-            car.setImg(currentDir);
+             car.setImg(currentDir);
         }
 
     }
@@ -323,5 +335,4 @@ public class ControllerMap {
         spawn.start();
     }
 
-    
 }

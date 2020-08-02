@@ -28,32 +28,42 @@ public class ControllerCar extends Thread {
     @Override
     public void run() {
         Random rand = new Random();
+        controller.notifyRepaint();
         while (!this.car.getCurrentRoad().getNextCell().isEmpty()) {
             try {
-
-                sleep(500);
-                int numRand = rand.nextInt(2);
-                if (this.car.getCurrentRoad().isIsCruzamento()) {
-                    this.car.getCurrentRoad().getNextCell().get(numRand).receiveCar(car);
-
-                    this.car.getCurrentRoad().removeCar();
-                    this.car.setOldRoad(this.car.getCurrentRoad());
-                    this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(numRand));
-
-                    this.car.setNextDirection(numRand);
-                } else {
-                    this.car.getCurrentRoad().getNextCell().get(0).receiveCar(car);
-
-                    this.car.getCurrentRoad().removeCar();
-                    this.car.setOldRoad(this.car.getCurrentRoad());
-                    this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(0));
-                }
-                controller.setCarImage(car);
-                controller.notifyRepaint();
+                sleep(300);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ControllerSpawner.class.getName()).log(Level.SEVERE, null, ex);
             }
+            int numRand = rand.nextInt(2);
+            if (this.car.getCurrentRoad().isIsCruzamento()) {
+                this.car.getCurrentRoad().getNextCell().get(numRand).receiveCar(car);
+
+                this.car.getCurrentRoad().removeCar();
+                this.car.setOldRoad(this.car.getCurrentRoad());
+                this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(numRand));
+
+                this.car.setNextDirection(numRand);
+            } else {
+                this.car.getCurrentRoad().getNextCell().get(0).receiveCar(car);
+
+                this.car.getCurrentRoad().removeCar();
+                this.car.setOldRoad(this.car.getCurrentRoad());
+                this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(0));
+            }
+            controller.setCarImage(car);
+            controller.notifyRepaint();
+
         }
+        try {
+            sleep(300);
+            controller.setCarImage(car);
+            this.car.getCurrentRoad().removeCar();
+            controller.notifyRepaint();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ControllerCar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public Car getCar() {

@@ -1,43 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulador_malha_viária.model;
 
+import static java.lang.Thread.sleep;
 import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Gustavo
  */
 public class MutexRoad extends Cell {
-    
-    private Semaphore semaforo;
-    
+
+    private final Semaphore semaforo;
 
     public MutexRoad(int direction, int posX, int posY) {
         super(direction, posX, posY);
         this.semaforo = new Semaphore(1);
     }
-    
-    
 
     @Override
     public void receiveCar(Car car) {
-         try {
+
+        try {
+            while (getCar() != null) {
+                sleep(300);
+            }
             semaforo.acquire();
             setCar(car);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MutexRoad.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             semaforo.release();
-        }
+
+        };
     }
 
     @Override
     public void removeCar() {
-         try {
+
+        try {
             semaforo.acquire();
             setCar(null);
         } catch (InterruptedException e) {
@@ -46,5 +47,5 @@ public class MutexRoad extends Cell {
             semaforo.release();
         }
     }
-    
+
 }

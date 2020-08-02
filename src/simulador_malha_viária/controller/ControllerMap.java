@@ -5,8 +5,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import simulador_malha_viária.controller.observer.ObserverMap;

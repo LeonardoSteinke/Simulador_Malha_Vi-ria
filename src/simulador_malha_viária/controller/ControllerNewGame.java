@@ -24,9 +24,9 @@ public class ControllerNewGame {
 
     }
 
-    public void selectMap(int id) {
+    public void selectMap(int id, boolean method) {
         ControllerMap control = ControllerMap.getIntance();
-        control.setMap(id, true);
+        control.setMap(id, method);
         notifyNewGameStart();
     }
 

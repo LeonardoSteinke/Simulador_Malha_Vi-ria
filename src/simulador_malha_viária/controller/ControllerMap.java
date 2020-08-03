@@ -188,41 +188,6 @@ public class ControllerMap {
 
     }
 
-    private List<ObserverMap> mapObserver = new ArrayList<>();
-
-    public void attachMap(ObserverMap obs) {
-        this.mapObserver.add(obs);
-    }
-
-    public void detach(ObserverMap obs) {
-        this.mapObserver.remove(obs);
-    }
-
-    private void notifyQtdCars(int value) {
-        for (ObserverMap obs : mapObserver) {
-            obs.setQtdCars(value);
-        }
-    }
-
-    private void notifyQtdCarsError() {
-        for (ObserverMap obs : mapObserver) {
-            obs.setQtdCarsError();
-        }
-    }
-
-    private void notifySetTable(int[][] matrix) {
-        for (ObserverMap obs : mapObserver) {
-            obs.setTable(matrix, rows, collumns);
-        }
-
-    }
-
-    public void notifyRepaint() {
-        for (ObserverMap obs : mapObserver) {
-            obs.rePaint();
-        }
-    }
-
     public synchronized void setCarImage(Car car) {
 
         int currentDir = car.getCurrentRoad().getDirection();

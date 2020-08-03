@@ -2,7 +2,7 @@ package simulador_malha_viária.model;
 
 /**
  *
- * @author Gustavo
+ * @author Gustavo e Leonardo
  */
 public class MonitorRoad extends Cell {
 

@@ -1,6 +1,5 @@
 package simulador_malha_viária.view;
 
-import javax.swing.JButton;
 import simulador_malha_viária.controller.ControllerNewGame;
 import simulador_malha_viária.controller.observer.ObserverNewGame;
 

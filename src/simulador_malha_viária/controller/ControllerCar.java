@@ -8,7 +8,7 @@ import simulador_malha_viária.model.Car;
 
 /**
  *
- * @author Gustavo
+ * @author Gustavo e Leonardo
  */
 public class ControllerCar extends Thread {
 

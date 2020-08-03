@@ -21,6 +21,7 @@ public class Car {
         this.nextDirection = 0;
         setType(5);
     }
+    //Getter and Setter
 
     public int getNextDirection() {
         return nextDirection;
@@ -34,7 +35,7 @@ public class Car {
         return typeCar;
     }
 
-    public final void setType(int numTypes){
+    public final void setType(int numTypes) {
         Random num = new Random();
         this.typeCar = num.nextInt(numTypes) + 1;
     }
@@ -54,7 +55,7 @@ public class Car {
     public void setCurrentRoad(Cell currentRoad) {
         this.currentRoad = currentRoad;
     }
-            
+
     public int getCarId() {
         return carId;
     }
@@ -66,7 +67,7 @@ public class Car {
     public String getImg() {
         return img;
     }
-    
+
     public void setImg(int direction) {
         this.img = "./assets/Car" + getTypeCar() + "Dir" + direction + ".jpg";
     }

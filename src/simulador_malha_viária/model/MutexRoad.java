@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Gustavo
+ * @author Gustavo e Leonardo
  */
 public class MutexRoad extends Cell {
 
@@ -20,7 +20,6 @@ public class MutexRoad extends Cell {
 
     @Override
     public void receiveCar(Car car) {
-
         try {
             while (getCar() != null) {
                 sleep(300);
@@ -31,13 +30,10 @@ public class MutexRoad extends Cell {
             Logger.getLogger(MutexRoad.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             semaforo.release();
-
-        };
+        }
     }
-
     @Override
     public void removeCar() {
-
         try {
             semaforo.acquire();
             setCar(null);
@@ -47,5 +43,4 @@ public class MutexRoad extends Cell {
             semaforo.release();
         }
     }
-
 }

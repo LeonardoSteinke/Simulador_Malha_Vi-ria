@@ -211,7 +211,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Velocidade para a inser&#xe7;&#xe3;o dos ve&#xed;culos\u005cn(em milisec)" containsInvalidXMLChars="true"/>
+            <Property name="text" type="java.lang.String" value="Velocidade para a inser&#xe7;&#xe3;o dos ve&#xed;culos (em milisec)"/>
           </Properties>
         </Component>
       </SubComponents>

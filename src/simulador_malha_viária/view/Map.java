@@ -107,7 +107,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
             }
         });
 
-        jLabel4.setText("Velocidade para a inserção dos veículos\\n(em milisec)");
+        jLabel4.setText("Velocidade para a inserção dos veículos (em milisec)");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

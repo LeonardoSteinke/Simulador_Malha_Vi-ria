@@ -36,6 +36,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         setResizable(false);
         setTitle("Simulador Malha Viária");
         controlMap.mapLoad();
+        btnEncerrar.setEnabled(false);
 
     }
 
@@ -166,7 +167,7 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncerrarActionPerformed
-        // TODO add your handling code here:
+        controlMap.stop();
     }//GEN-LAST:event_btnEncerrarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
@@ -264,4 +265,19 @@ public class Map extends javax.swing.JFrame implements ObserverMap {
         jTable1.repaint();
     }
 
+    @Override
+    public void setButton(boolean on) {
+        if(on){
+            btnIniciar.setEnabled(false);
+            btnEncerrar.setEnabled(true);
+        } else {
+            btnIniciar.setEnabled(true);
+            btnEncerrar.setEnabled(false);
+            
+        }
+       
+    }
+
+    
+    
 }

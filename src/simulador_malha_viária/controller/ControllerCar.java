@@ -76,6 +76,7 @@ public class ControllerCar extends Thread {
             controller.setCarImage(car);
             this.car.getCurrentRoad().removeCar();
             controller.notifyRepaint();
+            controller.getSpawn().removeCar();
         } catch (InterruptedException ex) {
             Logger.getLogger(ControllerCar.class.getName()).log(Level.SEVERE, null, ex);
         }

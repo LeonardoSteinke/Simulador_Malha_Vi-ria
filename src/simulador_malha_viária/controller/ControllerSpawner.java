@@ -12,7 +12,11 @@ public class ControllerSpawner extends Thread {
     ControllerMap controller = ControllerMap.getIntance();
 
     private boolean on = true;
+    private int velocidade = 500;
 
+    public void setVelocidade(int velocidade) {
+        this.velocidade = velocidade;
+    }
     private int totalCars = 0;
 
     public void removeCar() {
@@ -26,31 +30,16 @@ public class ControllerSpawner extends Thread {
     @Override
     public void run() {
         while (on) {
-
-            while (totalCars < controller.getQtdCars()) {
-                controller.spawnCar();
-                totalCars++;
-                try {
-                    sleep(500);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(ControllerSpawner.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
             try {
+                if (totalCars < controller.getQtdCars()) {
+                    controller.spawnCar();
+                    totalCars++;
+                    sleep(velocidade);
+                }
                 sleep(1);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ControllerSpawner.class.getName()).log(Level.SEVERE, null, ex);
             }
-//            for (int i = 0; i < controller.getQtdCars(); i++) {
-//                controller.spawnCar();
-//                totalCars++;
-//                try {
-//                    sleep(500);
-//                } catch (InterruptedException ex) {
-//                    Logger.getLogger(ControllerSpawner.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-
         }
     }
 

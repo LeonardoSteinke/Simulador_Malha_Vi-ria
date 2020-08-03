@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulador_malha_viária.controller;
 
 import static java.lang.Thread.sleep;
@@ -19,21 +14,29 @@ public class ControllerCar extends Thread {
 
     private Car car;
     private int contador;
+    private int velocidade = 300;
+
+    public void setVelocidade(int velocidade) {
+        this.velocidade = velocidade;
+    }
 
     ControllerMap controller = ControllerMap.getIntance();
 
-    public ControllerCar(Car car) {
+    public ControllerCar(Car car, int velocity) {
         this.car = car;
+        this.velocidade = velocity;
     }
 
     @Override
     public void run() {
         Random rand = new Random();
         controller.notifyRepaint();
-        while (!this.car.getCurrentRoad().getNextCell().isEmpty()) {
-            try {
+        try {
+            //Inicia o ciclo de vida do carro
+            while (!this.car.getCurrentRoad().getNextCell().isEmpty()) {
 
-                sleep(300); //velocidade
+                sleep(velocidade); //velocidade do carro
+
                 int numRand = rand.nextInt(2);
                 if (this.car.getCurrentRoad().isIsCruzamento()) {
                     if (this.car.getOldRoad().isIsCruzamento()) {
@@ -48,31 +51,25 @@ public class ControllerCar extends Thread {
                         } else {
                             numRand = 0;
                         }
-                    } 
-                     this.car.getCurrentRoad().getNextCell().get(numRand).receiveCar(car);
+                    }
+                    this.car.getCurrentRoad().getNextCell().get(numRand).receiveCar(car);
+                    this.car.getCurrentRoad().removeCar();
+                    this.car.setOldRoad(this.car.getCurrentRoad());
+                    this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(numRand));
+                    this.car.setNextDirection(numRand);
 
-                        this.car.getCurrentRoad().removeCar();
-                        this.car.setOldRoad(this.car.getCurrentRoad());
-                        this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(numRand));
-
-                        this.car.setNextDirection(numRand);
-                    
                 } else {
                     this.car.getCurrentRoad().getNextCell().get(0).receiveCar(car);
-
                     this.car.getCurrentRoad().removeCar();
                     this.car.setOldRoad(this.car.getCurrentRoad());
                     this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(0));
                 }
                 controller.setCarImage(car);
                 controller.notifyRepaint();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ControllerSpawner.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
-        }
-        try {
-            sleep(300);
+
+            //Destroi o carro quando chega no fim
+            sleep(velocidade);
             controller.setCarImage(car);
             this.car.getCurrentRoad().removeCar();
             controller.notifyRepaint();

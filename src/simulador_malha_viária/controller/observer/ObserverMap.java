@@ -16,4 +16,6 @@ public interface ObserverMap {
     
     public void setButton(boolean on);
 
+    public void velocidadeInvalida();
+
 }

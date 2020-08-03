@@ -28,6 +28,10 @@ public class ControllerMap {
     private int qtdCars;
     private ControllerSpawner spawn;
 
+    public ControllerSpawner getSpawn() {
+        return spawn;
+    }
+
     private static ControllerMap instance = null;
 
     public static ControllerMap getIntance() {
@@ -184,41 +188,6 @@ public class ControllerMap {
 
     }
 
-    private List<ObserverMap> mapObserver = new ArrayList<>();
-
-    public void attachMap(ObserverMap obs) {
-        this.mapObserver.add(obs);
-    }
-
-    public void detach(ObserverMap obs) {
-        this.mapObserver.remove(obs);
-    }
-
-    private void notifyQtdCars(int value) {
-        for (ObserverMap obs : mapObserver) {
-            obs.setQtdCars(value);
-        }
-    }
-
-    private void notifyQtdCarsError() {
-        for (ObserverMap obs : mapObserver) {
-            obs.setQtdCarsError();
-        }
-    }
-
-    private void notifySetTable(int[][] matrix) {
-        for (ObserverMap obs : mapObserver) {
-            obs.setTable(matrix, rows, collumns);
-        }
-
-    }
-
-    public void notifyRepaint() {
-        for (ObserverMap obs : mapObserver) {
-            obs.rePaint();
-        }
-    }
-
     public void setCarImage(Car car) {
 
         int currentDir = car.getCurrentRoad().getDirection();
@@ -249,13 +218,13 @@ public class ControllerMap {
                             car.setImg(2);
                         }
                     } else {
-                         if (car.getNextDirection() == 0) {
+                        if (car.getNextDirection() == 0) {
                             car.setImg(1);
                         } else {
                             car.setImg(2);
                         }
                     }
-                        
+
                     break;
                 case 10:
                     if (oldDir <= 4) {
@@ -270,39 +239,39 @@ public class ControllerMap {
                         } else {
                             car.setImg(4);
                         }
-                    }    
+                    }
                     break;
                 case 11:
                     if (oldDir <= 4) {
-                    if (car.getNextDirection() == 0) {
+                        if (car.getNextDirection() == 0) {
                             car.setImg(2);
                         } else {
                             car.setImg(3);
                         }
                     } else {
-                         
-                            car.setImg(3);
-                        
-                    }    
+
+                        car.setImg(3);
+
+                    }
                     break;
                 case 12:
                     if (oldDir <= 4) {
                         if (car.getNextDirection() == 0) {
                             car.setImg(3);
                         } else {
-                        car.setImg(4);
+                            car.setImg(4);
                         }
                     } else {
-                        
-                            car.setImg(4);
-                        
+
+                        car.setImg(4);
+
                     }
                     break;
 
             }
 
         } else {
-             car.setImg(currentDir);
+            car.setImg(currentDir);
         }
 
     }
@@ -361,10 +330,56 @@ public class ControllerMap {
         return qtdCars;
     }
 
-    //Se adicionar um parametro tempo, será o valor do Thread.sleep
     public void start() {
+        notifyDisableButton(true);
         spawn = new ControllerSpawner();
         spawn.start();
+    }
+
+    public void stop() {
+        notifyDisableButton(false);
+        spawn.setOn(false);
+    }
+
+    private List<ObserverMap> mapObserver = new ArrayList<>();
+
+    public void attachMap(ObserverMap obs) {
+        this.mapObserver.add(obs);
+    }
+
+    public void detach(ObserverMap obs) {
+        this.mapObserver.remove(obs);
+    }
+
+    private void notifyQtdCars(int value) {
+        for (ObserverMap obs : mapObserver) {
+            obs.setQtdCars(value);
+        }
+    }
+
+    private void notifyQtdCarsError() {
+        for (ObserverMap obs : mapObserver) {
+            obs.setQtdCarsError();
+        }
+    }
+
+    private void notifySetTable(int[][] matrix) {
+        for (ObserverMap obs : mapObserver) {
+            obs.setTable(matrix, rows, collumns);
+        }
+
+    }
+
+    public void notifyRepaint() {
+        for (ObserverMap obs : mapObserver) {
+            obs.rePaint();
+        }
+    }
+
+    private void notifyDisableButton(boolean on) {
+        for (ObserverMap obs : mapObserver) {
+            obs.setButton(on);
+        }
     }
 
 }

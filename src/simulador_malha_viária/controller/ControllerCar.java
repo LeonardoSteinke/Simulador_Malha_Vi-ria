@@ -69,25 +69,7 @@ public class ControllerCar extends Thread {
             } catch (InterruptedException ex) {
                 Logger.getLogger(ControllerSpawner.class.getName()).log(Level.SEVERE, null, ex);
             }
-            int numRand = rand.nextInt(2);
-            if (this.car.getCurrentRoad().isIsCruzamento()) {
-                this.car.getCurrentRoad().getNextCell().get(numRand).receiveCar(car);
-
-                this.car.getCurrentRoad().removeCar();
-                this.car.setOldRoad(this.car.getCurrentRoad());
-                this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(numRand));
-
-                this.car.setNextDirection(numRand);
-            } else {
-                this.car.getCurrentRoad().getNextCell().get(0).receiveCar(car);
-
-                this.car.getCurrentRoad().removeCar();
-                this.car.setOldRoad(this.car.getCurrentRoad());
-                this.car.setCurrentRoad(this.car.getCurrentRoad().getNextCell().get(0));
-            }
-            controller.setCarImage(car);
-            controller.notifyRepaint();
-
+           
         }
         try {
             sleep(300);
